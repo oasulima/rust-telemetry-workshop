@@ -1,0 +1,26 @@
+{
+    "build": {
+        "dockerfile": "Dockerfile"
+    },
+    "customizations": {
+        "vscode": {
+            "extensions": [
+                "fill-labs.dependi",
+                "rust-lang.rust-analyzer",
+                "tamasfe.even-better-toml",
+                "vadimcn.vscode-lldb",
+                "redhat.vscode-yaml",
+                "mhutchie.git-graph"
+            ]
+        }
+    },
+    "remoteUser": "ubuntu",
+    "mounts": [
+        "source=${localEnv:HOME}${localEnv:USERPROFILE}/.ssh,target=/home/ubuntu/.ssh,type=bind,consistency=cached",
+        "source=/home/oleg/D/Education/Projects/bugbounty/wordpress/plugins,target=/home/ubuntu/plugins,type=bind,consistency=cached"
+    ],
+    "runArgs": [
+        "--network=host"
+    ],
+    "postCreateCommand": "cargo install --locked workshop-runner"
+}
